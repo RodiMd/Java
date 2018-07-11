@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Auto.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;AutoClass&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">autoclass</a> &gt; <span class="el_source">Auto.java</span></div><h1>Auto.java</h1><pre class="source lang-java linenums">/*
+ * 
+ */
+package autoclass;
+import java.text.DecimalFormat;
+
+public class Auto
+{
+    // instance variables
+    private String model;          //  model of auto
+    private int milesDriven;       //  number of miles driven
+    private double gallonsOfGas;   //  number of gallons of gas
+
+    //  Constructors:
+    //  initializes model to &quot;unknown&quot;;
+    //  milesDriven is auto-initialized to 0
+    //  and gallonsOfGas to 0.0;
+    //  increments countAutos
+    public Auto( )
+<span class="fc" id="L20">    {</span>
+<span class="fc" id="L21">       model = &quot;unknown&quot;;</span>
+<span class="fc" id="L22">    }</span>
+
+    // allows client to set beginning values for
+    // model, milesDriven, and gallonsOfGas;
+    // increments countAutos
+    public Auto( String startModel,
+                 int startMilesDriven,
+                 double startGallonsOfGas )
+<span class="fc" id="L30">    {</span>
+<span class="fc" id="L31">       model = startModel;</span>
+<span class="fc" id="L32">       setMilesDriven( startMilesDriven );</span>
+<span class="fc" id="L33">       setGallonsOfGas( startGallonsOfGas );</span>
+       
+<span class="fc" id="L35">    }</span>
+
+    // Accessor Methods
+    // returns current value of model
+    public String getModel( )
+    {
+<span class="fc" id="L41">       return model;</span>
+    }
+
+    // returns current value of milesDriven
+    public int getMilesDriven( )
+    {
+<span class="fc" id="L47">       return milesDriven;</span>
+    }
+
+    // returns current value of gallonsOfGas
+    public double getGallonsOfGas( )
+    {
+<span class="fc" id="L53">       return gallonsOfGas;</span>
+    }
+    
+    // Mutator Methods:
+    // allows client to set model
+    public void setModel( String newModel )
+    {
+<span class="fc" id="L60">        model = newModel;</span>
+<span class="fc" id="L61">    }</span>
+
+    // allows client to set value of milesDriven;
+    // prints an error message if new value is less than 0
+    public void setMilesDriven( int newMilesDriven )
+    {
+<span class="fc bfc" id="L67" title="All 2 branches covered.">       if ( newMilesDriven &gt;= 0 )</span>
+<span class="fc" id="L68">          milesDriven = newMilesDriven;</span>
+       else
+       {
+<span class="fc" id="L71">          System.err.println( &quot;Miles driven cannot be negative.&quot; );</span>
+<span class="fc" id="L72">          System.err.println( &quot;Value not changed.&quot; );</span>
+       }
+<span class="fc" id="L74">    }</span>
+
+    // allows client to set value of gallonsOfGas;
+    // prints an error message if new value is less than 0.0
+    public void setGallonsOfGas( double newGallonsOfGas )
+    {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">       if ( newGallonsOfGas &gt;= 0.0 )</span>
+<span class="fc" id="L81">         gallonsOfGas = newGallonsOfGas;</span>
+       else
+       {
+<span class="fc" id="L84">         System.err.println( &quot;Gallons of gas cannot be negative.&quot; );</span>
+<span class="fc" id="L85">         System.err.println( &quot;Value not changed.&quot; );</span>
+       }
+<span class="fc" id="L87">    }</span>
+
+    // Calculates miles per gallon.
+    // if no gallons of gas have been used, returns 0.0;
+    // otherwise, returns miles per gallon
+    //   as milesDriven / gallonsOfGas
+    public double calculateMilesPerGallon( )
+    {
+<span class="fc bfc" id="L95" title="All 2 branches covered.">       if ( gallonsOfGas != 0.0 )</span>
+<span class="fc" id="L96">           return milesDriven / gallonsOfGas;</span>
+       else
+<span class="fc" id="L98">           return 0.0;</span>
+    }
+
+    // toString: returns a String with values of instance variable
+    public String toString( )
+    {
+<span class="fc" id="L104">       DecimalFormat gallonsFormat = new DecimalFormat( &quot;#0.0&quot; );</span>
+<span class="fc" id="L105">       return &quot;Model: &quot; + model</span>
+             + &quot;\n miles driven: &quot; + milesDriven
+             + &quot;\n gallons of gas: &quot;
+<span class="fc" id="L108">             + gallonsFormat.format( gallonsOfGas );</span>
+    }
+   
+    // equals: returns true if fields of parameter object
+    //         are equal to fields in this object
+    public boolean equals( Object o )
+    {
+<span class="fc bfc" id="L115" title="All 2 branches covered.">       if ( ! ( o instanceof Auto ) )</span>
+<span class="fc" id="L116"> 	      return false;</span>
+       else
+       {
+<span class="fc" id="L119">           Auto objAuto = ( Auto ) o;</span>
+<span class="fc bfc" id="L120" title="All 4 branches covered.">           if ( model.equals( objAuto.model )</span>
+                &amp;&amp; milesDriven == objAuto.milesDriven
+<span class="fc bfc" id="L122" title="All 2 branches covered.">                &amp;&amp; Math.abs( gallonsOfGas - objAuto.gallonsOfGas )</span>
+                &lt; 0.0001 )
+<span class="fc" id="L124">                return true;</span>
+            else
+<span class="fc" id="L126">                return false;</span>
+       }
+    }
+
+ }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
